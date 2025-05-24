@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accident Severity Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🚨 Safe Roads AI</h1>
+        <p>Predict accident severity using real-world features.</p>
+
+        <form method="post">
+            {% for feature in features %}
+                <label for="{{ feature }}">{{ feature.replace("_", " ").title() }}</label>
+                <input type="number" step="any" name="{{ feature }}" id="{{ feature }}" required>
+            {% endfor %}
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction is not none %}
+        <div class="result">
+            <h2>Prediction: {{ prediction }}</h2>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
